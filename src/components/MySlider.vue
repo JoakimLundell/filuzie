@@ -62,20 +62,25 @@ export default {
 
 .slider {
     height: 400px;
-    width: 600px;
+    min-height: auto;
+    width: 95vw;
     position: relative;
-    box-shadow: 0px 0px 100px black;
+    
+    /*background: black;*/
+    
 }
 
 img {
-    height:400px;
-    width: 600px;
+    height: 400px;
+    height: auto;
+    /*width: 90vw;*/
+    width: 95vw;
 }
 
 .prev, .next {
     cursor: pointer;
     position: absolute;
-    top: 40%;
+    top: 45%;
     width: auto;
     padding: 16px;
     color: white;
@@ -98,4 +103,18 @@ img {
 .prev:hover, .next:hover {
     background-color: rgba(0,0,0,0.9);
 }
+
+ @media screen and (min-width: 600px) { 
+ .slider {
+    height: 450px;
+    width: auto;
+    min-width: 600px;
+    box-shadow: 0px 0px 100px black;
+}
+
+img {
+    height: 450px;
+    width: 100%;
+}
+ }
 </style>

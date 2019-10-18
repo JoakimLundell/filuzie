@@ -12,6 +12,7 @@
     header {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         background: #eae7e5;
@@ -39,4 +40,8 @@
         color: #415547;
         transition: color 0.5s ease;
     }
+
+     @media screen and (min-width: 600px) { 
+
+     }
 </style>

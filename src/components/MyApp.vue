@@ -4,7 +4,7 @@
 
         <my-header>
             <a href="#" @click="scroll($event, 'home')">Hem</a>
-            <a href="#" @click="scroll($event, 'about')">Om bröllpet</a>
+            <a href="#" @click="scroll($event, 'about')">Om bröllopet</a>
             <a href="#" @click="scroll($event, 'directions')">Ta dig till bröllopet</a>
             <a href="#" @click="scroll($event, 'rvsp')">RVSP</a>        
         </my-header>
@@ -13,7 +13,7 @@
             <section id="home">
                 <div class="home">
                     <h1>Suzie & Filip</h1>
-                    <img class="spacing" src="/img/small.webp" />
+                    <img class="spacing small" src="/img/small.webp" />
                     <p class="spacing">bjuder in er till vårt bröllop</p>
                     <p class="bigspacing">31 Jul - 3 Aug 2020</p>
                     <img class="left" src="/img/krans-left.webp" />
@@ -27,13 +27,13 @@
                     <p>Vigseln sker lördag den 1 augusti 2020, men bröllopsfirandet pågår under hela helgen från fredag till måndag morgon.</p>
                     <p>Du bekostar ditt eget boende samt din resa - resten står vi för! Vi har hela slottsområdet för oss själva under hela helgen och samtliga gäster samt brudparet kommer att bo på området.                     Kostnaden för boendet är 3000 kr per person för hela vistelsen.</p>
                     <p>RSVP senast 31 Januari 2020</p>
-                    <img class="spacing" src="/img/bigger.webp" />
+                    <img class="spacing bigger" src="/img/bigger.webp" />
                 </div>
             </section>
 
             <section id="castle">
                 <div class="castle">
-                    <h2>Castello di Montalto</h2>
+                    <h2 style="text-shadow: 1px 1px 5px white;margin-bottom: 30px;">Castello di Montalto</h2>
                     <my-slider></my-slider>
                 </div>
             </section>
@@ -126,7 +126,7 @@ export default {
     }
 
     section {
-        height: calc(100vh - 100px);
+        min-height: calc(100vh - 100px);
         scroll-snap-align: start;
     }
 
@@ -159,21 +159,18 @@ export default {
 
     
     div.home {
-        width: 700px;
-        height: 70vh;
+        width: 95%;
+        height: 50vh;
         max-width: 900px;
         background: white;
         opacity: 0.9;
         position: relative;
         border-radius: 10px;
-        /*border-radius: 200px;
-        border-bottom-left-radius: 300px;
-        border-bottom-right-radius: 300px;*/
     }
 
     div.home > img.left {
         position: absolute;
-        left: 20px;
+        left: 1px;
         top: 20px;
         bottom: 20px;
         height: calc(100% - 40px);
@@ -181,7 +178,7 @@ export default {
 
     div.home > img.right {
         position: absolute;
-        right: 20px;
+        right: 1px;
         top: 20px;
         bottom: 20px;
         height: calc(100% - 40px);
@@ -195,11 +192,12 @@ export default {
         justify-content: center;
         align-items: center;
         text-align: center;
+        padding: 12px;
     }
     div.about,
     div.directions,
     div.castle {
-        max-width: 600px
+        max-width: 700px
     }
 
     form {
@@ -244,15 +242,15 @@ export default {
         font-family: 'Tangerine', serif;
         color: #5E5C5C;
         font-weight: 200;
-        font-size: 100px;
+        font-size: 65px;
     }
 
     h2 {
         font-family: 'Tangerine', serif;
         color: #5E5C5C;
         font-weight: 200;
-        font-size: 60px;
-        padding: 20px 0;
+        font-size: 55px;
+        padding: 10px 0 5px 0;
     }
 
     h3 {
@@ -260,7 +258,7 @@ export default {
         color: #5E5C5C;
         font-weight: 200;
         font-size: 40px;
-        padding: 20px 0;
+        padding: 10px 0 5px 0;
         letter-spacing: 5px
     }
 
@@ -268,25 +266,85 @@ export default {
        font-family: 'Raleway', sans-serif;
         font-style: italic;
         color: #5E5C5C;
-        font-size: 22px;
+        font-size: 18px;
         padding: 5px 0;
-        line-height: 30px;
+        line-height: 25px;
     }
 
     p.spacing {
         letter-spacing: 1px;
-        padding-bottom: 20px;
+        /*padding-bottom: 10px;*/
     }
 
     p.bigspacing {
-        letter-spacing: 10px;
+        letter-spacing: 1px;
     }
 
     img.spacing {
-        padding: 40px 0;
+        padding: 5px 0;
     }
+
+    img.small {
+        width: 20px;    
+    }
+
+    img.bigger {
+        width: 100px;
+        padding-top: 40px;
+    }
+    
 
     .white {
         color: white;
+    }
+
+    @media screen and (min-width: 700px) { 
+
+        h1 {
+            font-size: 100px;
+        }
+
+        img.small {
+            width: auto;    
+        }
+
+        img.bigger {
+            width: 200px;    
+        }
+
+        img.spacing {
+            width: 43px;
+            
+            padding: 40px 0;
+        }
+        p {
+            letter-spacing: 1px;
+        }
+
+        p.spacing {
+            letter-spacing: 1px;
+            padding-bottom: 20px;
+        }
+
+        p.bigspacing {
+            letter-spacing: 10px;
+        }
+
+        /* home screen */
+        div.home {
+            width: 90%;
+            height: 70vh;
+            max-width: 700px;
+            transition: all 1s ease;
+        }
+
+        div.home > img.left {
+            left: 10px;
+            
+        }
+
+        div.home > img.right {
+            right: 10px;
+        }
     }
 </style>
