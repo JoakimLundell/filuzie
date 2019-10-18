@@ -19,7 +19,7 @@ try {
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
     $mail->Username   = 'filuzie@endeleo.se';                     // SMTP username
     $mail->Password   = 'BU7q7qME';                               // SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted ENCRYPTION_STARTTLS
     $mail->Port       = 587;                                    // TCP port to connect to
 
     //Recipients
