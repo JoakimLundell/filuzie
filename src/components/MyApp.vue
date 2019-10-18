@@ -55,7 +55,7 @@
             <section id="rvsp" class="rvsp">
                 <h2>RSVP</h2>
                 <p class="bigspacing">Senast 31 Januari 2020</p>
-                <form>
+                <form @submit="sendMail">
                     <div class="row">
                         <div>
                             <label for="firstname">Namn</label>
@@ -74,7 +74,7 @@
                         <label for="message">Vill du meddela oss något?</label>
                         <input type="text" id="message" name="message" />
                     </div>
-                    <input type="submit" value="Jag kommer" />                
+                    <input type="submit" value="Jag kommer"  />                
 
                 </form>
             </section>
@@ -99,6 +99,9 @@ export default {
         scroll (e, to) {
             e.preventDefault()
             document.getElementById(to).scrollIntoView({ behavior: 'smooth' });
+        },
+        sendMail() {
+            window.open('mailto:test@example.com?subject=subject&body=body');
         }
     },
 } 
