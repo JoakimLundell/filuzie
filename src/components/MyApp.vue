@@ -23,12 +23,33 @@
 
             <section id="about">
                 <div class="about">
-                    <h2>Om bröllopet</h2>
-                    <p>Vigseln sker lördag den 1 augusti 2020, men bröllopsfirandet pågår under hela helgen från fredag till måndag morgon.</p>
-                    <p>Du bekostar ditt eget boende samt din resa - resten står vi för! Vi har hela slottsområdet för oss själva under hela helgen och samtliga gäster samt brudparet kommer att bo på området.                     Kostnaden för boendet är 3000 kr per person för hela vistelsen.</p>
-                    <p>RSVP senast 31 Januari 2020</p>
+                    <h2>Nu gifter vi oss - och vi vill fira med dig!</h2>
+                    <p>Vårt bröllop kommer hållas på slottet Castello di Montalto i vackra Toscana, Italien. Tillsammans med er gäster kommer vi spendera en underbar helg omgivna av vinodlingar och fantastiska vyer.</p>
+                    <p>Vigseln sker på lördagen den 1 augusti, men bröllopsfirandet pågår under hela helgen. Firandet inleds med en gemensam middag på fredagen, fortsätter med vigsel och bröllopsfest på lördagen och avslutas med frukost på måndagsmorgonen. Det innebär att alla gäster anländer på fredagen och lämnar på måndagen.</p>
+                    <p>Vi vet att det är mycket begärt att be er ta er hela vägen till Italien, därför kommer vi göra vårt bästa för att erbjuda en magisk helg med god mat, gemenskap och aktiviteter. Det här blir en semester att minnas!</p>
+                    <p>Den här bröllopshelgen passar bäst för vuxna och är därmed barnfri.</p>
+                    <p>Vi önskar oss inga presenter då vår största glädje är att du kan och vill komma och fira med oss! </p>
+                    
                     <img class="spacing bigger" src="/img/bigger.webp" />
                 </div>
+            </section>
+
+            
+
+            <section id="directions" class="directions">
+                <div class="directions">
+                    <h2 class="white">Ta dig till bröllopet</h2>
+                   
+                    
+                    <h3 class="white">Boende</h3>
+                    <p class="white">Vi vill umgås med er så mycket som möjligt och därför kommer alla gäster att bo tillsammans med oss på slottet under hela helgen! Vi har hela slottsområdet för oss själva från fredagen till måndagen.</p>
+                    <p class="white">Kostnaden för boendet är 3000 kr per person för hela vistelsen, fredag kväll till måndag morgon (31/7-3/8). Mat och dryck till alla måltider under hela helgen står vi för. Ni bokar det vill säga <b>inte</b> boka boende själva, det löser vi åt er!</p>
+
+                    <h3 class="white">Transport</h3>
+                    <p class="white">Tips är att boka flyg så tidigt som möjligt!</p>
+                    <p class="white">Närmaste flygplats : Peretolas, Florens<br> Närmaste tågstation: Siena</p>
+                    <p class="white">Mer information om hur ni enklast tar er till området kommer lite senare framöver</p>
+                </div>   
             </section>
 
             <section id="castle">
@@ -38,23 +59,14 @@
                 </div>
             </section>
 
-            <section id="directions" class="directions">
-                <div class="directions">
-                    <h2 class="white">Ta dig till bröllopet</h2>
-                    <h3 class="white">Transport</h3>
-                    <p class="white">Tips är att boka flyg så tidigt som möjligt!</p>
-                    <p class="white">Närmaste flygplats : Peretolas, Florens<br> Närmaste tågstation: Siena</p>
-                    <p class="white">Mer information om hur ni enklast tar er till området kommer lite senare framöver</p>
-                    
-                    <h3 class="white">Boende</h3>
-                    <p class="white">Vi planerar att alla bor på slottet!</p>
-                    <p class="white">Alla rum är självhushåll, det finns därmed köksutrustning såsom kyl/frys och spis. Det kommer finnas gott om mat så det behöver ni inte tänka på men är det något speciellt man önskar kan man handla det. </p>
-                </div>   
-            </section>
-
             <section id="rvsp" class="rvsp">
-                <h2>RSVP</h2>
-                <p class="bigspacing">Senast 31 Januari 2020</p>
+                <div class="rvsp">
+                    <h2>RSVP</h2>
+                    <p class="bigspacing">Senast 31 Januari 2020</p>
+                    <p>Svara genom att fylla i formuläret längst ner på sidan. Om du tackar ja åt någon mer än dig själv så skriv det i meddelanderutan. För er som väljer att tillbringa denna helg med oss, så kommer boendet behöva betalas in senast 31 mars. Mer information om bröllopshelgen och om hur betalning ska ske kommer senare.</p>
+                    <p>Har du några funderingar, hör av dig till oss!</p>
+                    <p>filuzieInTuscany@gmail.com</p>
+                </div>
                 <form @submit="sendMail">
                     <div class="row">
                         <div>
@@ -101,7 +113,7 @@ export default {
             document.getElementById(to).scrollIntoView({ behavior: 'smooth' });
         },
         sendMail() {
-            window.open('mailto:test@example.com?subject=subject&body=body');
+            window.open('mailto:filuzieInTuscany@gmail.com?subject=subject&body=body');
         }
     },
 } 
@@ -146,12 +158,16 @@ export default {
     }
 
     section#about {
-        background: white;
+        background: transparent;
     }
 
     section#directions {
         background: #5e7b64;
         color: white;
+    }
+
+    section#castle {
+        background:white;
     }
 
     section#rvsp {
@@ -189,18 +205,27 @@ export default {
 
     div.about,
     div.directions,
-    div.castle {
+    div.castle,
+    div.rvsp {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
         padding: 12px;
+
     }
     div.about,
     div.directions,
-    div.castle {
+    div.castle,
+    div.rvsp {
         max-width: 700px
+    }
+
+    div.about {
+        background: white;
+        opacity: 0.9;
+        border-radius: 10px;     
     }
 
     form {

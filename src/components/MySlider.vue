@@ -16,14 +16,12 @@ export default {
     data() {
         return {
             images: [
-                '/img/carusel/bkg4.JPG',
-                '/img/carusel/bkg1.JPG',
-                '/img/carusel/bkg2.JPG',
-                '/img/carusel/bkg3.JPG',
-                '/img/carusel/bkg5.JPG',
-                '/img/carusel/bkg6.JPG',
-                '/img/carusel/bkg7.JPG',
-                '/img/carusel/bkg8.JPG'
+                '/img/carusel/1_bild.jpg',
+                '/img/carusel/2_bild.jpg',
+                '/img/carusel/3_bild.jpg',
+                '/img/carusel/4_bild.jpg',
+                '/img/carusel/5_bild.jpg',
+                '/img/carusel/6_bild.jpg'
             ],
             currentIndex: 0,
         }
@@ -107,9 +105,9 @@ img {
  @media screen and (min-width: 600px) { 
  .slider {
     height: 450px;
-    width: auto;
+    width: 70vw;
     min-width: 600px;
-    box-shadow: 0px 0px 100px black;
+    box-shadow: 0px 0px 20px silver;
 }
 
 img {
