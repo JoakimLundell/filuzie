@@ -71,20 +71,20 @@
                     <div class="row">
                         <div>
                             <label for="firstname">Namn</label>
-                            <input type="text" id="firstname" name="firstname" required />
+                            <input type="text" id="firstname" name="firstname" v-model="firstname" required />
                         </div>
                         <div>
                             <label for="lastname">Efternamn</label>
-                            <input type="text" id="lastname" name="lastname" required/>
+                            <input type="text" id="lastname" name="lastname" v-model="lastname" required/>
                         </div>
                     </div>
                     <div>
                         <label for="email">E-post</label>
-                        <input type="email" id="email" name="email" required/>
+                        <input type="email" id="email" name="email" v-model="email" required/>
                     </div>
                     <div>
                         <label for="message">Vill du meddela oss något?</label>
-                        <input type="text" id="message" name="message" />
+                        <input type="text" id="message" name="message" v-model="message"/>
                     </div>
                     <input type="submit" value="Jag kommer"  />                
 
@@ -106,6 +106,16 @@ export default {
     components: {
         MyHeader, MySlider
     },
+
+    data: function() {
+        return {
+            firstname: '',
+            lastname: '',
+            email: '',
+            message: '',
+            errors: []
+        }
+    },
   
     methods: {
         scroll (e, to) {
@@ -113,8 +123,9 @@ export default {
             document.getElementById(to).scrollIntoView({ behavior: 'smooth' });
         },
         sendMail() {
-            window.open('mailto:filuzieInTuscany@gmail.com?subject=subject&body=body');
+            window.open('mailto:filuzieInTuscany@gmail.com?subject=RSVP - ' + this.firstname + ' ' + this.lastname + '&body=Jag kommer gärna! Min mejl är: ' + this.email +' <br/>Meddelenade: ' + this.message);
         }
+        
     },
 } 
 </script>
