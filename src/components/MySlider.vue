@@ -105,7 +105,7 @@ img {
  @media screen and (min-width: 600px) { 
  .slider {
     height: 450px;
-    width: 70vw;
+    width: 700px;
     min-width: 600px;
     box-shadow: 0px 0px 20px silver;
 }
