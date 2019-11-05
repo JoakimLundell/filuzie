@@ -5,7 +5,7 @@
         <my-header>
             <a href="#" @click="scroll($event, 'home')">Hem</a>
             <a href="#" @click="scroll($event, 'about')">Om bröllopet</a>
-            <a href="#" @click="scroll($event, 'directions')">Ta dig till bröllopet</a>
+            <a href="#" @click="scroll($event, 'directions')">Boende & Transport</a>
             <a href="#" @click="scroll($event, 'rvsp')">RVSP</a>        
         </my-header>
 
@@ -38,12 +38,12 @@
 
             <section id="directions" class="directions">
                 <div class="directions">
-                    <h2 class="white">Ta dig till bröllopet</h2>
+                    <!--h2 class="white">Ta dig till bröllopet</h2-->
                    
                     
                     <h3 class="white">Boende</h3>
                     <p class="white">Vi vill umgås med er så mycket som möjligt och därför kommer alla gäster att bo tillsammans med oss på slottet under hela helgen! Vi har hela slottsområdet för oss själva från fredagen till måndagen.</p>
-                    <p class="white">Kostnaden för boendet är 3000 kr per person för hela vistelsen, fredag kväll till måndag morgon (31/7-3/8). Mat och dryck till alla måltider under hela helgen står vi för. Ni bokar det vill säga <b>inte</b> boka boende själva, det löser vi åt er!</p>
+                    <p class="white">Kostnaden för boendet är 3000 kr per person för hela vistelsen, fredag kväll till måndag morgon (31/7-3/8). Mat och dryck till alla måltider under hela helgen står vi för. Ni bokar det vill säga <b>inte</b> boende själva, det löser vi åt er!</p>
 
                     <h3 class="white">Transport</h3>
                     <p class="white">Tips är att boka flyg så tidigt som möjligt!</p>
@@ -63,7 +63,7 @@
                 <div class="rvsp">
                     <h2>RSVP</h2>
                     <p class="bigspacing">Senast 31 Januari 2020</p>
-                    <p>Svara genom att fylla i formuläret längst ner på sidan. Om du tackar ja åt någon mer än dig själv så skriv det i meddelanderutan. För er som väljer att tillbringa denna helg med oss, så kommer boendet behöva betalas in senast 31 mars. Mer information om bröllopshelgen och om hur betalning ska ske kommer senare.</p>
+                    <p>Svara genom att fylla i formuläret nedan. Om du tackar ja åt någon mer än dig själv så skriv det i meddelanderutan. För er som väljer att tillbringa denna helg med oss, så kommer boendet behöva betalas in senast 31 mars. Mer information om bröllopshelgen och om hur betalning ska ske kommer senare.</p>
                     <p>Har du några funderingar, hör av dig till oss!</p>
                     <p>filuzieInTuscany@gmail.com</p>
                 </div>
@@ -86,7 +86,7 @@
                         <label for="message">Vill du meddela oss något?</label>
                         <input type="text" id="message" name="message" v-model="message"/>
                     </div>
-                    <input type="submit" value="Jag kommer"  />                
+                    <input type="submit" value="Jag kommer" />                
 
                 </form>
             </section>
@@ -123,7 +123,37 @@ export default {
             document.getElementById(to).scrollIntoView({ behavior: 'smooth' });
         },
         sendMail() {
-            window.open('mailto:filuzieInTuscany@gmail.com?subject=RSVP - ' + this.firstname + ' ' + this.lastname + '&body=Jag kommer gärna! Min mejl är: ' + this.email +' <br/>Meddelenade: ' + this.message);
+            this.logToFile();
+            //window.open('mailto:filuzieInTuscany@gmail.com?subject=RSVP - ' + this.firstname + ' ' + this.lastname + '&body=Jag kommer gärna! Min mejl är: ' + this.email +' <br/>Meddelenade: ' + this.message);
+        },
+        async logToFile() {
+            console.log("Save")
+            //fetch(register.php)
+            try {
+                const r = await this.postData('register.php', { answer: 42 });
+                console.log(JSON.stringify(r)); // JSON-string from `response.json()` call
+            } catch (error) {
+                console.error(error);
+            } 
+        },
+        async postData(url = '', data = {}) {
+
+            // Default options are marked with *
+            const response = await fetch(url, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrer: 'no-referrer', // no-referrer, *client
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            });
+            return await response.json(); // parses JSON response into native JavaScript objects
+
         }
         
     },
