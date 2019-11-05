@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteRule ^.well-known(.*)$ - [L,NC]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+AuthType Basic
+AuthName "Restricted Content"
+AuthUserFile /home/endeleo/domains/filuzie.se/public_html/rvsp/.htpasswd
+Require valid-user
+
