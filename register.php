@@ -7,6 +7,8 @@ foreach($_POST as $key=>$value) {
 }
 
 print $value;
+var_dump($_POST["name"]);
+var_dump("Hello");
 
 $filename = './rvsp/rvsp.txt';
 $handle = fopen($filename, 'a');

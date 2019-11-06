@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+   
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDnbrcpmpergeZENH2u3k-fUtT5Kf4qjjo",
+        authDomain: "askew-server.firebaseapp.com",
+        databaseURL: "https://askew-server.firebaseio.com",
+        projectId: "askew-server",
+        storageBucket: "askew-server.appspot.com",
+        messagingSenderId: "856345091020"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+</head>
+
+<body>
+    <style>
+        
+
+        html, body {
+            margin: 0;
+            padding: 10px;
+            color: var(--grey);
+        }
+
+        h1,h3 {
+            color: var(--white);
+        }
+
+    </style>
+
+    <h1>Anmälda</h1>
+    <div id=content>
+        
+    </div>
+
+    <script>
+    let database = firebase.database();
+            var ref = database.ref("rsvp");
+            ref.once("value", function(snapshot) {
+                
+                
+                myContent = document.getElementById("content");
+
+                snapshot.forEach(function (childSnapshot) {
+
+                    var value = childSnapshot.val();
+                    var node = document.createElement("div");
+                    var date = document.createTextNode(value.date + " "); 
+                    var firstname = document.createTextNode(value.firstname + " "); 
+                    var lastname = document.createTextNode(value.lastname + " ");
+                    var email = document.createTextNode(value.email + " ");
+                    var message = document.createTextNode(value.message);
+                    
+                    node.appendChild(date);
+                    node.appendChild(firstname);
+                    node.appendChild(lastname);
+                    node.appendChild(email);
+                    node.appendChild(message);
+                    myContent.appendChild(node);
+
+                });
+            
+            });
+    </script>
+    
+
+</body>
+
+</html>

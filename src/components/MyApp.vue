@@ -6,10 +6,11 @@
             <a href="#" @click="scroll($event, 'home')">Hem</a>
             <a href="#" @click="scroll($event, 'about')">Om bröllopet</a>
             <a href="#" @click="scroll($event, 'directions')">Boende & Transport</a>
-            <a href="#" @click="scroll($event, 'rvsp')">RVSP</a>        
+            <a href="#" @click="scroll($event, 'rvsp')">RSVP</a>        
         </my-header>
 
         <div class="content">
+            
             <section id="home">
                 <div class="home">
                     <h1>Suzie & Filip</h1>
@@ -67,26 +68,27 @@
                     <p>Har du några funderingar, hör av dig till oss!</p>
                     <p>filuzieInTuscany@gmail.com</p>
                 </div>
-                <form @submit="sendMail">
+                <form @submit="saveRsvp">
                     <div class="row">
                         <div>
                             <label for="firstname">Namn</label>
-                            <input type="text" id="firstname" name="firstname" v-model="firstname" required />
+                            <input type="text" id="firstname" name="firstname" v-model="input.firstname" required />
                         </div>
                         <div>
                             <label for="lastname">Efternamn</label>
-                            <input type="text" id="lastname" name="lastname" v-model="lastname" required/>
+                            <input type="text" id="lastname" name="lastname" v-model="input.lastname" required/>
                         </div>
                     </div>
                     <div>
                         <label for="email">E-post</label>
-                        <input type="email" id="email" name="email" v-model="email" required/>
+                        <input type="email" id="email" name="email" v-model="input.email" required/>
                     </div>
                     <div>
                         <label for="message">Vill du meddela oss något?</label>
-                        <input type="text" id="message" name="message" v-model="message"/>
+                        <input type="text" id="message" name="message" v-model="input.message"/>
                     </div>
-                    <input type="submit" value="Jag kommer" />                
+                    <input type="submit" value="Jag kommer" />
+                    <div id="notification" v-if="notification"><h3>{{notification}}</h3></div>                
 
                 </form>
             </section>
@@ -101,6 +103,7 @@
 
 import MyHeader from './MyHeader.vue'
 import MySlider from './MySlider.vue'
+import firebase from 'firebase'
 
 export default {
     components: {
@@ -109,11 +112,14 @@ export default {
 
     data: function() {
         return {
-            firstname: '',
-            lastname: '',
-            email: '',
-            message: '',
-            errors: []
+            input: {
+                firstname: '',
+                lastname: '',
+                email: '',
+                message: '',
+            },
+            errors: [],
+            notification: null,
         }
     },
   
@@ -122,41 +128,54 @@ export default {
             e.preventDefault()
             document.getElementById(to).scrollIntoView({ behavior: 'smooth' });
         },
-        sendMail() {
-            this.logToFile();
+        saveRsvp(e) {
+            e.preventDefault()
+            this.saveFirebase(this.input);
             //window.open('mailto:filuzieInTuscany@gmail.com?subject=RSVP - ' + this.firstname + ' ' + this.lastname + '&body=Jag kommer gärna! Min mejl är: ' + this.email +' <br/>Meddelenade: ' + this.message);
         },
-        async logToFile() {
-            console.log("Save")
-            //fetch(register.php)
-            try {
-                const r = await this.postData('register.php', { answer: 42 });
-                console.log(JSON.stringify(r)); // JSON-string from `response.json()` call
-            } catch (error) {
-                console.error(error);
-            } 
+        saveFirebase(c) {
+            var postData = {
+                date: this.date,
+                firstname: this.input.firstname,
+                lastname: this.input.lastname,
+                email: this.input.email,
+                message: this.input.message,
+            }
+            // Get key for new RVSP.
+            var newPostKey = firebase.database().ref().child('rsvp').push().key;
+            //console.log(newPostKey);
+            var updates = {};
+            let a = updates['/rsvp/' + newPostKey] = postData;
+            //console.log(a);
+            firebase.database().ref().update(updates);
+            setTimeout(() => {
+                this.input.firstname = null
+                this.input.lastname = null,
+                this.input.email = null,
+                this.input.message = null,
+                this.notification = "Tack för din anmälan"
+                setTimeout(() => {
+                    this.notification = ''
+                }, 5000);
+            }, 100);
         },
-        async postData(url = '', data = {}) {
 
-            // Default options are marked with *
-            const response = await fetch(url, {
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                mode: 'cors', // no-cors, *cors, same-origin
-                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', // include, *same-origin, omit
-                headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                redirect: 'follow', // manual, *follow, error
-                referrer: 'no-referrer', // no-referrer, *client
-                body: JSON.stringify(data) // body data type must match "Content-Type" header
-            });
-            return await response.json(); // parses JSON response into native JavaScript objects
 
-        }
         
     },
+
+    computed: {
+        date: function() {
+            let date = new Date();
+            return date.getFullYear() + '-' +
+                ('0' + date.getMonth()).slice(-2) + '-' +
+                ('0' + date.getDate()).slice(-2) + ' ' +
+                ('0' + date.getHours()).slice(-2) + ':' +
+                ('0' + date.getMinutes()).slice(-2) + ':' +
+                ('0' + date.getSeconds()).slice(-2);
+        }
+    },
+
 } 
 </script>
 
@@ -268,12 +287,27 @@ export default {
         opacity: 0.9;
         border-radius: 10px;     
     }
-
+    
+    div#notification {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 90px;
+        z-index: 100;
+        text-align: center;
+        background:white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+   
     form {
         border: 1px solid #415547;
         border-radius: 6px;
         padding: 30px;
         margin-top: 30px;
+        position: relative;
     }
 
     label {
