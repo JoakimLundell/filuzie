@@ -69,8 +69,7 @@ export default {
 }
 
 img {
-    height: 400px;
-    height: auto;
+    height: 300px;
     /*width: 90vw;*/
     width: 95vw;
 }
@@ -78,7 +77,7 @@ img {
 .prev, .next {
     cursor: pointer;
     position: absolute;
-    top: 45%;
+    top: 120px;
     width: auto;
     padding: 16px;
     color: white;
@@ -103,16 +102,20 @@ img {
 }
 
  @media screen and (min-width: 600px) { 
- .slider {
-    height: 450px;
-    width: 700px;
-    min-width: 600px;
-    box-shadow: 0px 0px 20px silver;
-}
+    .slider {
+        height: 450px;
+        width: 700px;
+        min-width: 600px;
+        box-shadow: 0px 0px 20px silver;
+    }
 
-img {
-    height: 450px;
-    width: 100%;
-}
+    img {
+        height: 450px;
+        width: 100%;
+    }
+
+    .prev, .next {
+        top: 200px;
+    }
  }
 </style>

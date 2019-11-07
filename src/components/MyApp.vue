@@ -14,11 +14,11 @@
             <section id="home">
                 <div class="home">
                     <h1>Suzie & Filip</h1>
-                    <img class="spacing small" src="/img/small.webp" />
+                    <img class="spacing small" src="/img/small.png" />
                     <p class="spacing">bjuder in er till vårt bröllop</p>
                     <p class="bigspacing">31 Jul - 3 Aug 2020</p>
-                    <img class="left" src="/img/krans-left.webp" />
-                    <img class="right" src="/img/krans-right.webp" />
+                    <img class="left" src="/img/krans-left.png" />
+                    <img class="right" src="/img/krans-right.png" />
                 </div>
             </section>
 
@@ -31,7 +31,7 @@
                     <p>Den här bröllopshelgen passar bäst för vuxna och är därmed barnfri.</p>
                     <p>Vi önskar oss inga presenter då vår största glädje är att du kan och vill komma och fira med oss! </p>
                     
-                    <img class="spacing bigger" src="/img/bigger.webp" />
+                    <img class="bigger" src="/img/bigger.png" />
                 </div>
             </section>
 
@@ -153,7 +153,7 @@ export default {
                 this.input.lastname = null,
                 this.input.email = null,
                 this.input.message = null,
-                this.notification = "Tack för din anmälan"
+                this.notification = "Välkommen! \n Vi ses i sommar."
                 setTimeout(() => {
                     this.notification = ''
                 }, 5000);
@@ -303,16 +303,16 @@ export default {
     }
    
     form {
-        border: 1px solid #415547;
+        border: 0px solid #415547;
         border-radius: 6px;
-        padding: 30px;
-        margin-top: 30px;
+        padding: 0 12px;
+        margin-top: 12px;
         position: relative;
     }
 
     label {
         display:block;
-        margin-top: 12px;
+        margin-top: 2px;
     }
 
     .row {
@@ -332,8 +332,8 @@ export default {
     }
 
     input {
-        padding:12px;
-        font-size: 1em;
+        padding: 6px;
+        font-size: 0.8em;
     }
 
     input[type=submit] {
@@ -352,8 +352,8 @@ export default {
         font-family: 'Tangerine', serif;
         color: #5E5C5C;
         font-weight: 200;
-        font-size: 55px;
-        padding: 10px 0 5px 0;
+        font-size: 35px;
+        padding: 5px 0 5px 0;
     }
 
     h3 {
@@ -366,21 +366,28 @@ export default {
     }
 
     p {
-       font-family: 'Raleway', sans-serif;
+        font-family: 'Raleway', sans-serif;
         font-style: italic;
         color: #5E5C5C;
-        font-size: 18px;
+        font-size: 16px;
         padding: 5px 0;
-        line-height: 25px;
+        line-height: 20px;
     }
 
     p.spacing {
         letter-spacing: 1px;
-        /*padding-bottom: 10px;*/
     }
 
     p.bigspacing {
         letter-spacing: 1px;
+    }
+
+    label {
+       font-family: 'Raleway', sans-serif;
+        font-style:normal;
+        color: #5E5C5C;
+        font-size: 14px; 
+         margin-top: 12px;
     }
 
     img.spacing {
@@ -392,8 +399,8 @@ export default {
     }
 
     img.bigger {
-        width: 100px;
-        padding-top: 40px;
+        width: 50px;
+        padding: 20px 0;
     }
     
 
@@ -407,20 +414,27 @@ export default {
             font-size: 100px;
         }
 
+        h2 {
+            font-size: 55px;
+            padding: 10px 0 5px 0;
+        }
+
         img.small {
             width: auto;    
         }
 
         img.bigger {
-            width: 200px;    
+            width: 100px;    
         }
 
         img.spacing {
             width: 43px;
-            
             padding: 40px 0;
         }
+
         p {
+            font-size: 18px;
+            line-height: 25px;
             letter-spacing: 1px;
         }
 
@@ -443,11 +457,22 @@ export default {
 
         div.home > img.left {
             left: 10px;
-            
         }
 
         div.home > img.right {
             right: 10px;
+        }
+
+        form {
+            border: 1px solid #415547;
+            border-radius: 6px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        input {
+            padding:12px;
+            font-size: 1em;
         }
     }
 </style>
