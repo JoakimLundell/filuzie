@@ -6,7 +6,7 @@
             <a href="#" @click="scroll($event, 'home')">Hem</a>
             <a href="#" @click="scroll($event, 'about')">Om bröllopet</a>
             <a href="#" @click="scroll($event, 'directions')">Boende & Transport</a>
-            <a href="#" @click="scroll($event, 'rvsp')">RSVP</a>        
+            <a href="#" @click="scroll($event, 'rvsp')">OSA</a>        
         </my-header>
 
         <div class="content">
@@ -26,7 +26,7 @@
                 <div class="about">
                     <h2>Nu gifter vi oss - och vi vill fira med dig!</h2>
                     <p>Vårt bröllop kommer hållas på slottet Castello di Montalto i vackra Toscana, Italien. Tillsammans med er gäster kommer vi spendera en underbar helg omgivna av vinodlingar och fantastiska vyer.</p>
-                    <p>Vigseln sker på lördagen den 1 augusti, men bröllopsfirandet pågår under hela helgen. Firandet inleds med en gemensam middag på fredagen, fortsätter med vigsel och bröllopsfest på lördagen och avslutas med frukost på måndagsmorgonen. Det innebär att alla gäster anländer på fredagen och lämnar på måndagen.</p>
+                    <p>Vigseln sker på lördagen den 1 augusti, men bröllopsfirandet pågår under hela helgen. Firandet inleds med att alla gäster checkar in på fredag eftermiddag för att sedan samlas för en gemensam middag. Vi fortsätter med vigsel och bröllopsfest på lördagen och en härlig söndag som avslutas med en middag. Helgen avslutas på måndag morgon efter en härlig frukost. Ett mer detaljerat program över helgen kommer senare.</p>
                     <p>Vi vet att det är mycket begärt att be er ta er hela vägen till Italien, därför kommer vi göra vårt bästa för att erbjuda en magisk helg med god mat, gemenskap och aktiviteter. Det här blir en semester att minnas!</p>
                     <p>Den här bröllopshelgen passar bäst för vuxna och är därmed barnfri.</p>
                     <p>Vi önskar oss inga presenter då vår största glädje är att du kan och vill komma och fira med oss! </p>
@@ -44,7 +44,7 @@
                     
                     <h3 class="white">Boende</h3>
                     <p class="white">Vi vill umgås med er så mycket som möjligt och därför kommer alla gäster att bo tillsammans med oss på slottet under hela helgen! Vi har hela slottsområdet för oss själva från fredagen till måndagen.</p>
-                    <p class="white">Kostnaden för boendet är 3000 kr per person för hela vistelsen, fredag kväll till måndag morgon (31/7-3/8). Mat och dryck till alla måltider under hela helgen står vi för. Ni bokar det vill säga <b>inte</b> boende själva, det löser vi åt er!</p>
+                    <p class="white">Kostnaden för boendet är 3000 kr per person för hela vistelsen, fredag kväll till måndag morgon (31/7-3/8). Mat och dryck till alla måltider under hela helgen står vi för. Ni bokar <b>inte</b> boende själva, det löser vi åt er!</p>
 
                     <h3 class="white">Transport</h3>
                     <p class="white">Tips är att boka flyg så tidigt som möjligt!</p>
@@ -62,13 +62,13 @@
 
             <section id="rvsp" class="rvsp">
                 <div class="rvsp">
-                    <h2>RSVP</h2>
-                    <p class="bigspacing">Senast 31 Januari 2020</p>
+                    <h2>OSA</h2>
+                    <p class="bigspacin_">Svara gärna så snart ni vet men senast den 31 Januari 2020.</p>
                     <p>Svara genom att fylla i formuläret nedan. Om du tackar ja åt någon mer än dig själv så skriv det i meddelanderutan. För er som väljer att tillbringa denna helg med oss, så kommer boendet behöva betalas in senast 31 mars. Mer information om bröllopshelgen och om hur betalning ska ske kommer senare.</p>
                     <p>Har du några funderingar, hör av dig till oss!</p>
                     <p>filuzieInTuscany@gmail.com</p>
                 </div>
-                <form @submit="saveRsvp">
+                <form ref="form" @submit.prevent="handleSubmit">
                     <div class="row">
                         <div>
                             <label for="firstname">Namn</label>
@@ -87,7 +87,10 @@
                         <label for="message">Vill du meddela oss något?</label>
                         <input type="text" id="message" name="message" v-model="input.message"/>
                     </div>
-                    <input type="submit" value="Jag kommer" />
+                    <div class="row">
+                    <input type="button" value="Jag/Vi kommer" style="margin-right: 6px" @click="willAttend"/>
+                    <input type="button" value="Jag/Vi kommer inte" style="margin-left: 6px" @click="cantAttend"/>
+                    </div>
                     <div id="notification" v-if="notification"><h3>{{notification}}</h3></div>                
 
                 </form>
@@ -117,6 +120,7 @@ export default {
                 lastname: '',
                 email: '',
                 message: '',
+                attend: ''
             },
             errors: [],
             notification: null,
@@ -133,9 +137,11 @@ export default {
             this.saveFirebase(this.input);
             //window.open('mailto:filuzieInTuscany@gmail.com?subject=RSVP - ' + this.firstname + ' ' + this.lastname + '&body=Jag kommer gärna! Min mejl är: ' + this.email +' <br/>Meddelenade: ' + this.message);
         },
-        saveFirebase(c) {
+        
+        handleSubmit () {
             var postData = {
                 date: this.date,
+                attend: this.attend,
                 firstname: this.input.firstname,
                 lastname: this.input.lastname,
                 email: this.input.email,
@@ -148,18 +154,52 @@ export default {
             let a = updates['/rsvp/' + newPostKey] = postData;
             //console.log(a);
             firebase.database().ref().update(updates);
+
+            this.handleResponse();
+            
+        },
+
+        willAttend () {
+            this.attend = 'Ja';
+            this.validateForm();
+        },
+
+        cantAttend () {
+            this.attend = 'Nej';
+            this.validateForm();
+        },
+
+        handleResponse () {
+            console.log("Submitting...");
+            if(this.attend === 'Ja') {
+                this.notification = "Välkommen! \n Vi ses i sommar."
+            } else {
+                 this.notification = "Det var synd, tack för ert svar."
+            }
+
             setTimeout(() => {
                 this.input.firstname = null
                 this.input.lastname = null,
                 this.input.email = null,
                 this.input.message = null,
-                this.notification = "Välkommen! \n Vi ses i sommar."
                 setTimeout(() => {
                     this.notification = ''
                 }, 5000);
             }, 100);
+
         },
 
+        validateForm () {
+            if (this.$refs.form.checkValidity()) {
+                this.handleSubmit();
+            } else {
+                this.$refs.form.reportValidity();
+            }
+        },
+
+        emptyForm () {
+
+        }
 
         
     },
@@ -308,6 +348,7 @@ export default {
         padding: 0 12px;
         margin-top: 12px;
         position: relative;
+        margin-bottom: 100px;
     }
 
     label {
@@ -336,7 +377,8 @@ export default {
         font-size: 0.8em;
     }
 
-    input[type=submit] {
+    input[type=submit],
+    input[type=button] {
         margin-top: 18px;
     }
 
@@ -369,6 +411,8 @@ export default {
         font-family: 'Raleway', sans-serif;
         font-style: italic;
         color: #5E5C5C;
+        color: #1a1a1a;
+        color: black;
         font-size: 16px;
         padding: 5px 0;
         line-height: 20px;
@@ -468,6 +512,7 @@ export default {
             border-radius: 6px;
             padding: 30px;
             margin-top: 30px;
+            margin-bottom: 0;
         }
 
         input {
