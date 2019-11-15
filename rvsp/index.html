@@ -37,6 +37,19 @@
             color: var(--white);
         }
 
+        span {
+            padding: 2px 6px;
+            background: #333;
+            border-radius: 4px;
+        }
+        span.red {
+            color: red
+        }
+
+        span.green {
+            color: green
+        }
+
     </style>
 
     <h1>Anmälda</h1>
@@ -56,17 +69,27 @@
 
                     var value = childSnapshot.val();
                     var node = document.createElement("div");
-                    var date = document.createTextNode(value.date + " "); 
+                    var attend = document.createElement("span");
+                    let attendClass = (value.attend === 'Nej') ? 'red':'green'; 
+                    attend.classList.add(attendClass);
+
+                    var date = document.createTextNode(value.date + " ");
+                    var attendvalue = document.createTextNode(value.attend); 
                     var firstname = document.createTextNode(value.firstname + " "); 
                     var lastname = document.createTextNode(value.lastname + " ");
                     var email = document.createTextNode(value.email + " ");
-                    var message = document.createTextNode(value.message);
+                    var message = document.createTextNode(value.message + " ");
                     
+                    attend.appendChild(attendvalue);
+
+
                     node.appendChild(date);
+                    //node.appendChild(attend);
                     node.appendChild(firstname);
                     node.appendChild(lastname);
                     node.appendChild(email);
                     node.appendChild(message);
+                    node.append(attend);
                     myContent.appendChild(node);
 
                 });
