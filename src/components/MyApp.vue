@@ -63,7 +63,7 @@
             <section id="rvsp" class="rvsp">
                 <div class="rvsp">
                     <h2>OSA</h2>
-                    <p class="bigspacin_">Svara gärna så snart ni vet men senast den 31 Januari 2020.</p>
+                    <p class="bigspacin_">Svara gärna så snart ni vet men senast den 29 Februari 2020.</p>
                     <p>Svara genom att fylla i formuläret nedan. Om du tackar ja åt någon mer än dig själv så skriv det i meddelanderutan. För er som väljer att tillbringa denna helg med oss, så kommer boendet behöva betalas in senast 31 mars. Mer information om bröllopshelgen och om hur betalning ska ske kommer senare.</p>
                     <p>Har du några funderingar, hör av dig till oss!</p>
                     <p>filuzieInTuscany@gmail.com</p>
