@@ -16,7 +16,7 @@
                     <h1>Suzie & Filip</h1>
                     <img class="spacing small" src="/img/small.png" />
                     <p class="spacing">bjuder in er till vårt bröllop</p>
-                    <p class="bigspacing">31 Jul - 3 Aug 2020</p>
+                    <p class="bigspacing">30 Jul - 2 Aug 2021</p>
                     <img class="left" src="/img/krans-left.png" />
                     <img class="right" src="/img/krans-right.png" />
                 </div>
@@ -26,7 +26,7 @@
                 <div class="about">
                     <h2>Nu gifter vi oss - och vi vill fira med dig!</h2>
                     <p>Vårt bröllop kommer hållas på slottet Castello di Montalto i vackra Toscana, Italien. Tillsammans med er gäster kommer vi spendera en underbar helg omgivna av vinodlingar och fantastiska vyer.</p>
-                    <p>Vigseln sker på lördagen den 1 augusti, men bröllopsfirandet pågår under hela helgen. Firandet inleds med att alla gäster checkar in på fredag eftermiddag för att sedan samlas för en gemensam middag. Vi fortsätter med vigsel och bröllopsfest på lördagen och en härlig söndag som avslutas med en middag. Helgen avslutas på måndag morgon efter en härlig frukost. Ett mer detaljerat program över helgen kommer senare.</p>
+                    <p>Vigseln sker på lördagen den 31 juli, men bröllopsfirandet pågår under hela helgen. Firandet inleds med att alla gäster checkar in på fredag eftermiddag för att sedan samlas för en gemensam middag. Vi fortsätter med vigsel och bröllopsfest på lördagen och en härlig söndag som avslutas med en middag. Helgen avslutas på måndag morgon efter en härlig frukost. Ett mer detaljerat program över helgen kommer senare.</p>
                     <p>Vi vet att det är mycket begärt att be er ta er hela vägen till Italien, därför kommer vi göra vårt bästa för att erbjuda en magisk helg med god mat, gemenskap och aktiviteter. Det här blir en semester att minnas!</p>
                     <p>Den här bröllopshelgen passar bäst för vuxna och är därmed barnfri.</p>
                     <p>Vi önskar oss inga presenter då vår största glädje är att du kan och vill komma och fira med oss! </p>
@@ -44,7 +44,7 @@
                     
                     <h3 class="white">Boende</h3>
                     <p class="white">Vi vill umgås med er så mycket som möjligt och därför kommer alla gäster att bo tillsammans med oss på slottet under hela helgen! Vi har hela slottsområdet för oss själva från fredagen till måndagen.</p>
-                    <p class="white">Kostnaden för boendet är 3000 kr per person för hela vistelsen, fredag kväll till måndag morgon (31/7-3/8). Mat och dryck till alla måltider under hela helgen står vi för. Ni bokar <b>inte</b> boende själva, det löser vi åt er!</p>
+                    <p class="white">Kostnaden för boendet är 3000 kr per person för hela vistelsen, fredag kväll till måndag morgon (30/7-2/8). Mat och dryck till alla måltider under hela helgen står vi för. Ni bokar <b>inte</b> boende själva, det löser vi åt er!</p>
 
                     <h3 class="white">Transport</h3>
                     <p class="white">Tips är att boka flyg så tidigt som möjligt!</p>
@@ -63,7 +63,7 @@
             <section id="rvsp" class="rvsp">
                 <div class="rvsp">
                     <h2>OSA</h2>
-                    <p class="bigspacin_">Svara gärna så snart ni vet men senast den 29 Februari 2020.</p>
+                    <p class="bigspacin_">Svara gärna så snart ni vet.</p>
                     <p>Svara genom att fylla i formuläret nedan. Om du tackar ja åt någon mer än dig själv så skriv det i meddelanderutan. För er som väljer att tillbringa denna helg med oss, så kommer boendet behöva betalas in senast 31 mars. Mer information om bröllopshelgen och om hur betalning ska ske kommer senare.</p>
                     <p>Har du några funderingar, hör av dig till oss!</p>
                     <p>filuzieInTuscany@gmail.com</p>
